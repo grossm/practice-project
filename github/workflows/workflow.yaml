@@ -1,0 +1,43 @@
+name: Deployment Workflow
+on:
+  push:
+   jobs:
+   linter:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v3
+
+        - name: Set up Node.js
+          uses: actions/setup-node@v3
+          with:
+            node-version: '18'
+
+        - name: Install Dependencies
+          run: npm install
+
+        - name: Run Linter
+          run: npm run lint
+          
+    deploy:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v2
+
+        - name: Set up Node.js
+          uses: actions/setup-node@v3
+          with:
+            node-version: '18'
+
+        - name: Install Dependencies
+          run: npm install
+
+        - name: Run Tests
+          run: npm test
+
+        - name: Deploy Application
+          if: success()
+          run: |
+            echo "Deploying application..."
+            # Add your deployment commands here
