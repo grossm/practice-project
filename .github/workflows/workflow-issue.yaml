@@ -5,11 +5,11 @@ on:
     types: [opened, edited, reopened]
 
 jobs:
-  linter:
+  print-context:
     runs-on: ubuntu-latest
     steps:
       - name: Print GH Context
-        run: echo "${{ toJson(github) }}"
+        run: echo "${{ toJson(github.event) }}"
         
 
 
