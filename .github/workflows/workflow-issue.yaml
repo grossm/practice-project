@@ -1,0 +1,17 @@
+name: Issue Workflow
+
+on:
+  issues:
+    types: [opened, edited, reopened]
+
+jobs:
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print GH Context
+        run: echo "${{ toJson(github) }}"
+        
+
+
+
+  
